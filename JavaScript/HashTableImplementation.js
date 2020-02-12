@@ -15,7 +15,7 @@ class HashTable {
     return hash;
   }
   
-  _set(key, value){
+  set(key, value){
     let hashedKey = this._hash(key);
     if(this.data[hashedKey] == undefined){
       this.data[hashedKey] = [value];
@@ -25,7 +25,7 @@ class HashTable {
     }
   }
 
-  _get(key){
+  get(key){
     let hashedKey = this._hash(key);
     let found = this.data[hashedKey];
     if(this.data[hashedKey] == undefined){
@@ -37,5 +37,5 @@ class HashTable {
 
 /** code for testing/using */
 const myHashTable = new HashTable(50);
-myHashTable._set('grapes', 20);
-myHashTable._get('grapes');
+myHashTable.set('grapes', 20);
+myHashTable.get('grapes');
