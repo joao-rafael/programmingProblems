@@ -15,23 +15,28 @@ class HashTable {
     return hash;
   }
   
-  set(key, value){
+  inset(key, value){
     let hashedKey = this._hash(key);
     if(this.data[hashedKey] == undefined){
-      this.data[hashedKey] = [value];
+      this.data[hashedKey] = [];
+      this.data[hashedKey].push([key, value]);
     }else{
       console.log('Collision');
-      this.data[hashedKey].push(value);
+      this.data[hashedKey].push([key, value]);
     }
   }
 
   get(key){
     let hashedKey = this._hash(key);
-    let found = this.data[hashedKey];
-    if(this.data[hashedKey] == undefined){
-      return 'not found';
+    let bucket = this.data[hashedKey];
+    if(bucket){
+      for(let i = 0; i < bucket.length; i++){
+        if(bucket[i][0] === key){
+          return bucket[i][1];
+        }
+      }
     }
-    return this.data[hashedKey];
+    return 'not found'; 
   }
 }
 
